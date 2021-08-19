@@ -15,9 +15,9 @@ class NotesHandler {
     try {
       this._validator.validateNotePayload(request.payload);
       const { title = 'untitled', body, tags } = request.payload;
- 
+
       const noteId = await this._service.addNote({ title, body, tags });
- 
+
       const response = h.response({
         status: 'success',
         message: 'Catatan berhasil ditambahkan',
@@ -36,7 +36,7 @@ class NotesHandler {
         response.code(error.statusCode);
         return response;
       }
- 
+
       // Server ERROR!
       const response = h.response({
         status: 'error',
@@ -82,9 +82,9 @@ class NotesHandler {
     try {
       this._validator.validateNotePayload(request.payload);
       const { id } = request.params;
- 
+
       await this._service.editNoteById(id, request.payload);
- 
+
       return {
         status: 'success',
         message: 'Catatan berhasil diperbarui',
